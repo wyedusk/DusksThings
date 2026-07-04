@@ -22,7 +22,7 @@ You can craft the Spectral Lens with 2 Diamonds, 4 Glass Panes of any kind, 2 Ne
 
 <h4><img width=16 src="media/images/spectral_apple.png"> Spectral Apple</h4>
 
-The Spectral Apple is a consumable food item that provides no nutritional value, but gives the Spectral Transformation status effect upon consumption. Once Spectral Transformation ends, you become a ghost entity.
+The Spectral Apple is a consumable food item that provides no nutritional value, but gives the Spectral Transformation status effect upon consumption. Once Spectral Transformation ends, you become a ghost.
 
 You can obtain a Spectral Apple by throwing a normal Apple into Soul Fire.
 
