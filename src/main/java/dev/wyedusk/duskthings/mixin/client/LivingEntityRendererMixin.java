@@ -46,6 +46,8 @@ public abstract class LivingEntityRendererMixin {
     )
     private void duskthings$render$modifyRenderToBufferArgs(
             Args args) {
+        if (!DTConfig.ghostsFeatureEnabled) return;
+
         Minecraft minecraft = Minecraft.getInstance();
         assert minecraft.player != null;
         // Visibility Modifier

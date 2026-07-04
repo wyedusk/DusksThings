@@ -11,8 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class SpectralLensItem extends Item {
-    public SpectralLensItem(
+public class SpectralAppleItem extends Item {
+    public SpectralAppleItem(
             Properties properties) {
         super(properties);
     }
@@ -20,15 +20,10 @@ public class SpectralLensItem extends Item {
     @Override
     public void appendHoverText(
             @NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        if (!DTConfig.ghostsFeatureEnabled || !DTConfig.spectralLensFunctionality) {
+        if (!DTConfig.ghostsFeatureEnabled || !DTConfig.spectralAppleFunctionality) {
             tooltip.add(Component.translatable("tooltip.duskthings.disabled_item").withStyle(ChatFormatting.RED));
             return;
         }
-        String modifiers = DTConfig.spectralLensShowsInvisible ? "" : ".noinvis";
-        if (ModList.get().isLoaded("curios")) {
-            tooltip.add(Component.translatable("item.duskthings.spectral_lens.tooltip"+modifiers+".curios", Component.translatable("curios.identifier.charm").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
-        } else {
-            tooltip.add(Component.translatable("item.duskthings.spectral_lens.tooltip"+modifiers).withStyle(ChatFormatting.GRAY));
-        }
+        tooltip.add(Component.translatable("item.duskthings.spectral_apple.tooltip").withStyle(ChatFormatting.GRAY));
     }
 }

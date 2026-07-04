@@ -1,5 +1,6 @@
 package dev.wyedusk.duskthings.client.renderer;
 
+import dev.wyedusk.duskthings.DTConfig;
 import dev.wyedusk.duskthings.DuskThings;
 import dev.wyedusk.duskthings.utility.GhostHelper;
 import net.minecraft.client.Minecraft;
@@ -18,6 +19,8 @@ public class EntityRenderEvent {
     @SubscribeEvent
     public static void onRenderEntity(
             RenderLivingEvent.Pre<LivingEntity, EntityModel<LivingEntity>> event) {
+        if (!DTConfig.ghostsFeatureEnabled) return;
+
         LivingEntity entity = event.getEntity();
         Player player = Minecraft.getInstance().player;
 

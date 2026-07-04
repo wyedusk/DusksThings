@@ -1,6 +1,7 @@
 package dev.wyedusk.duskthings.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.wyedusk.duskthings.DTConfig;
 import dev.wyedusk.duskthings.DuskThings;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
@@ -17,6 +18,7 @@ public class EntityRenderDispatcherMixin {
     private static void duskthings$renderShadow(
             PoseStack poseStack, MultiBufferSource buffer, Entity entity, float p_114461_, float p_114462_, LevelReader level, float p_114464_,
             CallbackInfo ci) {
+        if (!DTConfig.ghostsFeatureEnabled) return;
         if (entity.getData(DuskThings.IS_GHOST).equals(true)) ci.cancel();
     }
 }

@@ -8,6 +8,9 @@
   "item.duskthings.spectral_lens.tooltip.curios": "When equipped in the %s slot, allows you to see ghosts and invisible entities.",
   "item.duskthings.spectral_lens.tooltip.noinvis": "When in your inventory, allows you to see ghosts.",
   "item.duskthings.spectral_lens.tooltip.noinvis.curios": "When equipped in the %s slot, allows you to see ghosts.",
+  "item.duskthings.spectral_apple.tooltip": "Upon consumption, your soul will begin to separate from your body.",
+
+  "tooltip.duskthings.disabled_item": "This item is disabled by your configuration settings.",
 
   "duskthings.configuration.ghost_entities": "Ghost Entities",
   "duskthings.configuration.ghosts_feature_enabled": "Ghost Entities Enabled§c*§r",
