@@ -11,6 +11,7 @@ public class DTConfig implements IModBusEvent {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
     private static final ModConfigSpec.BooleanValue GHOSTS_FEATURE_ENABLED;
+    private static final ModConfigSpec.BooleanValue SEE_SELF_AS_GHOST;
     private static final ModConfigSpec.IntValue GHOST_TRANSPARENCY;
     private static final ModConfigSpec.BooleanValue SPECTRAL_LENS_FUNCTIONALITY;
     private static final ModConfigSpec.BooleanValue SPECTRAL_LENS_SHOWS_INVISIBLE;
@@ -20,6 +21,7 @@ public class DTConfig implements IModBusEvent {
     static final ModConfigSpec SPEC;
 
     public static boolean ghostsFeatureEnabled;
+    public static boolean seeSelfAsGhost;
     public static int ghostTransparency;
     public static boolean spectralLensFunctionality;
     public static boolean spectralLensShowsInvisible;
@@ -31,6 +33,8 @@ public class DTConfig implements IModBusEvent {
 
         GHOSTS_FEATURE_ENABLED = BUILDER.comment("Whether the Ghost Entities feature is enabled.")
                 .define("ghosts_feature_enabled", true);
+        SEE_SELF_AS_GHOST = BUILDER.comment("Whether you can see yourself as a Ghost.")
+                .define("see_self_as_ghost", true);
         GHOST_TRANSPARENCY = BUILDER.comment("The transparency of Ghosts when they can be seen.\n0 = Invisible, 255 = Visible")
                 .defineInRange("ghost_transparency", 120, 0, 255);
 
@@ -51,6 +55,7 @@ public class DTConfig implements IModBusEvent {
     static void onLoad(
             final ModConfigEvent event) {
         ghostsFeatureEnabled = GHOSTS_FEATURE_ENABLED.get();
+        seeSelfAsGhost = SEE_SELF_AS_GHOST.getAsBoolean();
         ghostTransparency = GHOST_TRANSPARENCY.getAsInt();
 
         spectralLensFunctionality = SPECTRAL_LENS_FUNCTIONALITY.getAsBoolean();
