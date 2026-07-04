@@ -1,5 +1,6 @@
 package dev.wyedusk.duskthings.item;
 
+import dev.wyedusk.duskthings.DTConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -19,10 +20,11 @@ public class SpectralLensItem extends Item {
     @Override
     public void appendHoverText(
             @NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        String modifiers = DTConfig.spectralLensShowsInvisible ? "" : ".noinvis";
         if (ModList.get().isLoaded("curios")) {
-            tooltip.add(Component.translatable("item.duskthings.spectral_lens.tooltip.curios", Component.translatable("curios.identifier.charm").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("item.duskthings.spectral_lens.tooltip"+modifiers+".curios", Component.translatable("curios.identifier.charm").withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.GRAY));
         } else {
-            tooltip.add(Component.translatable("item.duskthings.spectral_lens.tooltip").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("item.duskthings.spectral_lens.tooltip"+modifiers).withStyle(ChatFormatting.GRAY));
         }
     }
 }
