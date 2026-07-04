@@ -24,8 +24,6 @@ public class MixinCompatChecker implements IMixinConfigPlugin {
     @Override
     public String getRefMapperConfig() {return "";}
 
-
-
     @Override
     public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {}
 
