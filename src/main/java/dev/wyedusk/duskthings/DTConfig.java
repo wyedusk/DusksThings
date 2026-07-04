@@ -42,7 +42,7 @@ public class DTConfig implements IModBusEvent {
         SPECTRAL_APPLE_FUNCTIONALITY = BUILDER.comment("Whether the Spectral Apple will be functional at all.")
                 .define("spectral_apple_functionality", true);
         SPECTRAL_APPLE_WAIT_TIME = BUILDER.comment("The time in seconds between using the Spectral Apple and becoming a ghost.")
-                .defineInRange("spectral_apple_wait_time", 20, 0, 60);
+                .defineInRange("spectral_apple_wait_time", 5, 0, 60);
 
         SPEC = BUILDER.build();
     }

@@ -13,9 +13,11 @@
   "tooltip.duskthings.disabled_item": "This item is disabled by your configuration settings.",
 
   "duskthings.configuration.ghost_entities": "Ghost Entities",
-  "duskthings.configuration.ghosts_feature_enabled": "Ghost Entities Enabled§c*§r",
-  "duskthings.configuration.ghosts_feature_enabled.tooltip": "§c* REQUIRES RESTART§r\nWhether the Ghost Entities feature is enabled.",
+  "duskthings.configuration.ghosts_feature_enabled": "Ghost Entities Enabled",
+  "duskthings.configuration.ghosts_feature_enabled.tooltip": "Whether the Ghost Entities feature is enabled.",
   "duskthings.configuration.ghost_transparency": "Ghost Transparency",
-  "duskthings.configuration.spectral_lens_shows_invisible": "Spectral Lens shows Invisible Entities"
-
+  "duskthings.configuration.spectral_lens_functionality": "Spectral Lens Enabled",
+  "duskthings.configuration.spectral_lens_shows_invisible": "Spectral Lens shows Invisible Entities",
+  "duskthings.configuration.spectral_apple_functionality": "Spectral Apple Enabled",
+  "duskthings.configuration.spectral_apple_wait_time": "Spectral Apple Wait Time"
 }

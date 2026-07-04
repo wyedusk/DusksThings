@@ -3,7 +3,9 @@ package dev.wyedusk.duskthings;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import dev.wyedusk.duskthings.compat.CompatHandler;
-import dev.wyedusk.duskthings.item.SpectralLensItem;import net.minecraft.core.registries.Registries;
+import dev.wyedusk.duskthings.item.SpectralAppleItem;
+import dev.wyedusk.duskthings.item.SpectralLensItem;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
@@ -45,7 +47,7 @@ public class DuskThings {
     public static final DeferredItem<Item> SPECTRAL_LENS = ITEMS.registerItem("spectral_lens", SpectralLensItem::new,
             new Item.Properties()
                     .stacksTo(1));
-    public static final DeferredItem<Item> SPECTRAL_APPLE = ITEMS.registerItem("spectral_apple", Item::new,
+    public static final DeferredItem<Item> SPECTRAL_APPLE = ITEMS.registerItem("spectral_apple", SpectralAppleItem::new,
             new Item.Properties()
                     .food(new FoodProperties.Builder()
                             .nutrition(4)
