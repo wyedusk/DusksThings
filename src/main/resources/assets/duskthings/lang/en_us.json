@@ -2,6 +2,7 @@
   "itemGroup.duskthings": "Dusk's Things",
 
   "item.duskthings.spectral_lens": "Spectral Lens",
+  "item.duskthings.spectral_apple": "Spectral Apple",
 
   "item.duskthings.spectral_lens.tooltip": "When in your inventory, allows you to see ghosts and invisible entities.",
   "item.duskthings.spectral_lens.tooltip.curios": "When equipped in the %s slot, allows you to see ghosts and invisible entities.",

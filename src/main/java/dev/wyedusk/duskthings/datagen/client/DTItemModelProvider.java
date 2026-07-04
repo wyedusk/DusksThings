@@ -13,5 +13,6 @@ public class DTItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         this.basicItem(DuskThings.SPECTRAL_LENS.get());
+        this.basicItem(DuskThings.SPECTRAL_APPLE.get());
     }
 }
