@@ -17,6 +17,7 @@
   "duskthings.configuration.ghost_entities": "Ghost Entities",
   "duskthings.configuration.ghosts_feature_enabled": "Ghost Entities Enabled",
   "duskthings.configuration.ghosts_feature_enabled.tooltip": "Whether the Ghost Entities feature is enabled.",
+  "duskthings.configuration.see_self_as_ghost": "See Self as Ghost",
   "duskthings.configuration.ghost_transparency": "Ghost Transparency",
   "duskthings.configuration.spectral_lens_functionality": "Spectral Lens Enabled",
   "duskthings.configuration.spectral_lens_shows_invisible": "Spectral Lens shows Invisible Entities",

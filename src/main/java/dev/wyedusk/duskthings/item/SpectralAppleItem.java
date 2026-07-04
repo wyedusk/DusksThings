@@ -35,7 +35,7 @@ public class SpectralAppleItem extends Item {
     public @NotNull ItemStack finishUsingItem(
             ItemStack stack, @NotNull Level level, @NotNull LivingEntity entity) {
         FoodProperties foodproperties = stack.getFoodProperties(entity);
-        if (!DTConfig.ghostsFeatureEnabled || !DTConfig.spectralAppleFunctionality) {
+        if (DTConfig.ghostsFeatureEnabled && DTConfig.spectralAppleFunctionality) {
             entity.addEffect(new MobEffectInstance(
                     DuskThings.SPECTRAL_TRANSFORMATION_MOB_EFFECT.getDelegate(),
                     DTConfig.spectralAppleWaitTime * 20));

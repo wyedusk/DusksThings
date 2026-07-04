@@ -47,7 +47,8 @@ public class DuskThings {
                             .nutrition(0)
                             .saturationModifier(0F)
                             .alwaysEdible()
-                            .build()));
+                            .build())
+                    .fireResistant());
 
     // Creative Tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE_TAB = CREATIVE_MODE_TABS.register(MODID, () -> CreativeModeTab.builder()

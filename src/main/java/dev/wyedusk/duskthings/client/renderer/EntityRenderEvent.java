@@ -24,7 +24,7 @@ public class EntityRenderEvent {
         LivingEntity entity = event.getEntity();
         Player player = Minecraft.getInstance().player;
 
-        if (entity == player && !DTConfig.seeSelfAsGhost) return; // don't hide the main player
+        if (entity == player) return; // don't hide the main player
         if (entity.getData(DuskThings.IS_GHOST).equals(false)) return;
 
         boolean canAlwaysSeeGhosts = false;
