@@ -3,10 +3,12 @@ package dev.wyedusk.duskthings;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import dev.wyedusk.duskthings.compat.CompatHandler;
+import dev.wyedusk.duskthings.effect.SpectralTransformationMobEffect;
 import dev.wyedusk.duskthings.item.SpectralAppleItem;
 import dev.wyedusk.duskthings.item.SpectralLensItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -31,6 +33,7 @@ public class DuskThings {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
+    public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, MODID);
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
@@ -41,8 +44,9 @@ public class DuskThings {
     public static final DeferredItem<Item> SPECTRAL_APPLE = ITEMS.registerItem("spectral_apple", SpectralAppleItem::new,
             new Item.Properties()
                     .food(new FoodProperties.Builder()
-                            .nutrition(4)
-                            .saturationModifier(0.3F)
+                            .nutrition(0)
+                            .saturationModifier(0F)
+                            .alwaysEdible()
                             .build()));
 
     // Creative Tab
@@ -50,6 +54,9 @@ public class DuskThings {
             .title(Component.translatable("itemGroup.duskthings"))
             .icon(() -> SPECTRAL_LENS.get().getDefaultInstance())
             .build());
+
+    // Mob Effects
+    public static final DeferredHolder<MobEffect, SpectralTransformationMobEffect> SPECTRAL_TRANSFORMATION_MOB_EFFECT = MOB_EFFECTS.register("spectral_transformation", SpectralTransformationMobEffect::new);
 
     // Attachment Types
     public static final Supplier<AttachmentType<Boolean>> IS_GHOST = ATTACHMENT_TYPES.register(
@@ -63,6 +70,7 @@ public class DuskThings {
 
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
+        MOB_EFFECTS.register(modEventBus);
         ATTACHMENT_TYPES.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
