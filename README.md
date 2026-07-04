@@ -10,13 +10,11 @@
 
 This feature adds the capability to become a ghost (currently only through an operator command), making it so you're only visible at the edge of a player's vision. You are always able to see yourself, however.
 
-
-On top of players, you can also make entities invisible, shown above in the demo where a pig has been turned into a ghost!
+On top of players, you can also make entities ghosts, shown above in the demo where a pig has been turned into a ghost!
 
 <h4><img width=16 src="media/images/spectral_lens.png"> Spectral Lens</h4>
 
 There is an item called the Spectral Lens, which allows you to see both ghosts and invisible entities when worn in the Charm slot (if you have <a href="modrinth.com/mod/curios">Curios</a>), or when held in your inventory (if you have no accessory mods).
-
 
 You can craft the Spectral Lens with 2 Diamonds, 4 Glass Panes of any kind, 2 Nether Quartz, and 1 Soul Lantern arranged in the pattern below:
 
