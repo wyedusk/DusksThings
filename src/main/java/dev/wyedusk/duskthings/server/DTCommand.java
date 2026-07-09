@@ -1,8 +1,10 @@
 package dev.wyedusk.duskthings.server;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import dev.wyedusk.duskthings.DuskThings;
+import dev.wyedusk.duskthings.network.packet.ClientboundSyncExtraHealthPacket;
 import dev.wyedusk.duskthings.network.packet.ClientboundSyncGhostPacket;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -10,8 +12,13 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -126,6 +133,56 @@ public class DTCommand {
                                             );
                                             return 1;
                                         })))
+                        )
+                        .then(Commands.literal("health")
+                                .then(Commands.literal("add")
+                                        .requires(source -> source.hasPermission(2))
+                                        .then(Commands.argument("amount", IntegerArgumentType.integer())
+                                                .executes((CommandContext<CommandSourceStack> context) -> {
+                                                    Entity entity = context.getSource().getEntity();
+                                                    if (!(entity instanceof LivingEntity)) {
+                                                        context.getSource().sendFailure(Component.literal("This command must be ran on an entity with health!"));
+                                                        return 0;
+                                                    }
+                                                    int amount = IntegerArgumentType.getInteger(context, "amount");
+
+                                                    CommandSourceStack source = context.getSource();
+                                                    ServerLevel level = source.getLevel();
+
+                                                    if (level.isClientSide) {
+                                                        context.getSource().sendFailure(Component.literal("This command must be ran on the server!"));
+                                                        return 0;
+                                                    }
+
+                                                    AttributeInstance maxHealth = ((LivingEntity) entity).getAttribute(Attributes.MAX_HEALTH);
+                                                    int extraHealth = entity.getData(DuskThings.EXTRA_HEALTH);
+                                                    Component entityComponent = entity.getName().copy().withStyle(Style.EMPTY.withHoverEvent(
+                                                            new HoverEvent(
+                                                                    HoverEvent.Action.SHOW_ENTITY,
+                                                                    new HoverEvent.EntityTooltipInfo(
+                                                                            entity.getType(),
+                                                                            entity.getUUID(),
+                                                                            entity.getName()
+                                                                    )
+                                                            )
+                                                    ));
+                                                    extraHealth += amount;
+                                                    entity.setData(DuskThings.EXTRA_HEALTH, extraHealth);
+                                                    assert maxHealth != null;
+                                                    maxHealth.addOrReplacePermanentModifier(new AttributeModifier(
+                                                            ResourceLocation.fromNamespaceAndPath(DuskThings.MODID, "extra_health"),
+                                                            extraHealth,
+                                                            AttributeModifier.Operation.ADD_VALUE));
+                                                    int finalExtraHealth = extraHealth;
+                                                    context.getSource().sendSuccess(() -> entityComponent.copy().append(Component.literal(" now has %d extra health.".formatted(finalExtraHealth))), true);
+                                                    PacketDistributor.sendToPlayersTrackingEntity(
+                                                            entity,
+                                                            new ClientboundSyncExtraHealthPacket(entity.getId(), extraHealth)
+                                                    );
+                                                    return 1;
+                                                })
+                                        )
+                                )
                         )
         );
     }

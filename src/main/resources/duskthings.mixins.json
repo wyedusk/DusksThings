@@ -4,10 +4,10 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "dev.wyedusk.duskthings.compat.MixinCompatChecker",
   "mixins": [
-    "client.EntityRenderDispatcherMixin",
     "compat.CuriosBridgeMixin"
   ],
   "client": [
+    "client.EntityRenderDispatcherMixin",
     "client.LivingEntityRendererMixin"
   ],
   "injectors": {

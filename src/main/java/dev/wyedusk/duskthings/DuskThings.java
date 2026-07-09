@@ -62,6 +62,8 @@ public class DuskThings {
     // Attachment Types
     public static final Supplier<AttachmentType<Boolean>> IS_GHOST = ATTACHMENT_TYPES.register(
             "is_ghost", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL.fieldOf("is_ghost").codec()).build());
+    public static final Supplier<AttachmentType<Integer>> EXTRA_HEALTH = ATTACHMENT_TYPES.register(
+            "extra_health", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT.fieldOf("extra_health").codec()).build());
 
     public DuskThings(
             IEventBus modEventBus, ModContainer modContainer) {
