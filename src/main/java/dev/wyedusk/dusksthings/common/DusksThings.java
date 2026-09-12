@@ -7,15 +7,21 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.slf4j.Logger;
 
 @Mod(DusksThings.MODID)
 public class DusksThings {
     public static final String MODID = "dusksthings";
+    public static String MODNAME = "Dusk's Things";
+    public static ArtifactVersion MODVER;
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public DusksThings(IEventBus modEventBus, ModContainer modContainer) {
         Contents.registerContents(modEventBus);
+
+        MODNAME = modContainer.getModInfo().getDisplayName();
+        MODVER = modContainer.getModInfo().getVersion();
 
         modContainer.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
     }

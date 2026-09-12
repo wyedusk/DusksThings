@@ -62,8 +62,14 @@ public abstract class LivingEntityRendererMixin {
     private void duskthings$getRenderType(LivingEntity entity, boolean p_115323_, boolean p_115324_, boolean p_115325_, CallbackInfoReturnable<RenderType> cir) {
         Player player = Minecraft.getInstance().player;
         assert player != null;
-        if (GhostsUtil.isGhost(entity) && (entity.isInvisibleTo(player) && !GhostsUtil.playerCanAlwaysSeeGhosts(player))) return;
-        if (entity.isInvisibleTo(player) && !ServerConfig.SPECTRAL_LENS_SHOWS_INVISIBLE_ENTITIES.getAsBoolean()) return;
+        if (GhostsUtil.isGhost(entity) && (entity.isInvisibleTo(player) && !GhostsUtil.playerCanAlwaysSeeGhosts(player))) {
+            cir.setReturnValue(null);
+            return;
+        }
+        if (entity.isInvisibleTo(player) && !ServerConfig.SPECTRAL_LENS_SHOWS_INVISIBLE_ENTITIES.getAsBoolean()) {
+            cir.setReturnValue(null);
+            return;
+        }
         LivingEntityRenderer<LivingEntity, EntityModel<LivingEntity>> renderer = (LivingEntityRenderer<LivingEntity, EntityModel<LivingEntity>>)(Object)this;
         ResourceLocation texture = renderer.getTextureLocation(entity);
 

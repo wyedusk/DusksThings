@@ -24,13 +24,16 @@ public class ClientEntityEventListener {
         Player player = Minecraft.getInstance().player;
 
         if (entity == player) return; // don't hide the main player
-        if (!GhostsUtil.isGhost(entity)) return;
-
         boolean canAlwaysSeeGhosts = false;
         if (player != null) {
             canAlwaysSeeGhosts = GhostsUtil.playerCanAlwaysSeeGhosts(player);
         }
         if (canAlwaysSeeGhosts) return;
+        if (entity.isInvisible()) {
+            event.setCanceled(true);
+            return;
+        }
+        if (!GhostsUtil.isGhost(entity)) return;
 
         Minecraft mc = Minecraft.getInstance();
         Entity cameraEntity = mc.getCameraEntity();
