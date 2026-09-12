@@ -12,6 +12,7 @@ import net.minecraft.network.chat.MutableComponent;
 
 public class GhostsCommand {
     public static LiteralArgumentBuilder<CommandSourceStack> buildCommand() {
+        // TODO: get & set ghost statuses via commands
         return Commands.literal("ghosts")
                 .executes(GhostsCommand::giveFeatureEnabled);
     }
