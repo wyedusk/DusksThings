@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+issueTrackerURL="https://github.com/wyedusk/DusksThings"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+displayURL="https://modrinth.com/mod/dusksthings"
+authors = "${mod_authors}"
+description = '''${mod_description}'''
+logoFile="assets/${mod_id}/textures/misc/logo.png"
+
+[[mixins]]
+config="${mod_id}.mixins.json"
+
+# NeoForge
+[[dependencies."${mod_id}"]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+# Compatible Mods
+[[dependencies."${mod_id}"]]
+modId = "curios"
+type = "optional"
+versionRange = ","
+ordering = "NONE"
+side = "BOTH"

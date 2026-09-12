@@ -1,0 +1,24 @@
+{
+  "itemGroup.dusksthings": "Dusk's Things",
+
+  "item.dusksthings.spectral_lens": "Spectral Lens",
+  "item.dusksthings.spectral_apple": "Spectral Apple",
+
+  "item.dusksthings.spectral_lens.tooltip": "When in your inventory, allows you to see ghosts and invisible entities.",
+  "item.dusksthings.spectral_lens.tooltip.curios": "When equipped in the %s slot, allows you to see ghosts and invisible entities.",
+  "item.dusksthings.spectral_lens.tooltip.noinvis": "When in your inventory, allows you to see ghosts.",
+  "item.dusksthings.spectral_lens.tooltip.noinvis.curios": "When equipped in the %s slot, allows you to see ghosts.",
+  "item.dusksthings.spectral_apple.tooltip": "Upon consumption, your soul will begin to separate from your body.",
+
+  "effect.dusksthings.spectral_transformation": "Spectral Transformation",
+
+  "tooltip.dusksthings.disabled_item": "This item is disabled by configuration settings.",
+
+  "dusksthings.configuration.ghosts": "Ghosts",
+  "dusksthings.configuration.ghostsFeatureEnabled": "Ghosts Feature Enabled",
+  "dusksthings.configuration.spectralAppleEnabled": "Spectral Apple Enabled",
+  "dusksthings.configuration.spectralLensEnabled": "Spectral Lens Enabled",
+  "dusksthings.configuration.ghostTransparency": "Ghost Transparency",
+  "dusksthings.configuration.spectralAppleWaitTime": "Spectral Apple Wait Time",
+  "dusksthings.configuration.spectralLensShowsInvisibleEntities": "Spectral Lens Shows Invisible Entities"
+}

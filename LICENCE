@@ -1,0 +1,68 @@
+Dusk's Minecraft Mod Licence
+Copyright (c) 2026 wyedusk
+
+For the purposes of this licence, "Mod" refers to the software, source code, compiled binaries, assets, and any accompanying files distributed by the Mod Author under this licence.
+
+1. Attribution
+
+If you distribute, modify, fork, or otherwise reuse any part of this Mod, including its source code, compiled binaries, or assets, you must credit the Mod Author.
+
+If any content that you have distributed, modified, forked, or reused from this Mod also includes further attribution to another author, artist, or contributor, you must preserve those credits as well.
+
+This attribution may be included in a description and / or README file, a suitable credits file, or in the credits or description field of the NeoForge metadata file (usually found at /src/main/templates/META-INF/neoforge.mods.toml).
+
+2. Usage in Modpacks
+
+You may include unmodified copies of this Mod in public or private Modpacks without obtaining additional permission.
+
+If this Mod is included in a Modpack as an unmodified release, the Mod file should be obtained from a download source designated or linked to by the Mod Author. Modpack distributors may not replace, modify, or redistribute an altered version of the Mod while representing it as the original Mod or an official release of the Mod without permission from the Mod Author, unless:
+
+- Use of an altered version is required due to incompatibilities with other Mods within the Modpack. You must state the changes clearly in a manner that is reasonably visible to users. It is, however, preferred that integration with other mods be implemented through usage of any configuration files or datapack capabilities provided by the Mod, if any.
+
+3. Redistribution
+
+You may redistribute this Mod, its source code, compiled binaries, or assets, whether modified or unmodified, provided that all of the following conditions are met:
+
+- The original copyright notice and this licence are both included.
+
+- Appropriate attribution has been provided as required by Section 1.
+
+- Any modified version clearly states that it has been modified.
+
+- Any existing attribution notices have been preserved.
+
+- The redistributed content is not represented as an official release of this Mod unless authorised by the Mod Author.
+
+4. Commercial Use
+
+You may not sell, license, monetise, or otherwise commercially exploit this Mod, its source code, or its assets without prior permission from the Mod Author. If an asset has further attribution, you must obtain prior permission from the individual(s) who hold rights to that asset before making commercial use of that asset.
+
+You may, however, receive monetisation from free Modpacks including this Mod without requiring prior permission.
+
+If you wish to utilise this Mod in a Modpack that requires any form of payment to access, you must obtain prior, written permission from the Mod Author.
+
+5. Licence Preservation
+
+Modified versions and forks of this Mod must retain:
+
+- The original copyright notice.
+
+- This licence text.
+
+- Any existing attribution notices.
+
+You may not remove this licence or distribute this Mod or a modified version of this Mod under a different licence without written permission from the Mod Author.
+
+6. Exceptions
+
+The Mod Author may grant additional permissions or exceptions on an individual basis. Any such permission must be explicitly granted by the Mod Author.
+
+The Mod Author may also revoke exceptions or additional permission granted under this Section at any time unless otherwise agreed in writing.
+
+7. Disclaimer
+
+THIS MOD IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+IN NO EVENT SHALL THE MOD AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM OR IN CONNECTION WITH THE MOD OR ITS USE.
+
+ANY RIGHTS GRANTED UNDER THIS LICENCE WILL AUTOMATICALLY TERMINATE IF YOU FAIL TO COMPLY WITH ITS TERMS.

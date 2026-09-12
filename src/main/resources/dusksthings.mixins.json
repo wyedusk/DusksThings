@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.wyedusk.dusksthings.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "dev.wyedusk.dusksthings.common.compat.MixinCompatChecker",
+  "mixins": [
+    "compat.CuriosBridgeMixin"
+  ],
+  "client": [
+    "client.EntityRenderDispatcherMixin",
+    "client.LivingEntityRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

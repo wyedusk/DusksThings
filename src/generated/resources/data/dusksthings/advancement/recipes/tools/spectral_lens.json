@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "entered_soul_sand_valley": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "minecraft:soul_sand_valley"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "dusksthings:spectral_lens"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "entered_soul_sand_valley"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "dusksthings:spectral_lens"
+    ]
+  }
+}
