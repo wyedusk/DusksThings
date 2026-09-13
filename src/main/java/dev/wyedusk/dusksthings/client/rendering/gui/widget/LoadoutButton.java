@@ -1,12 +1,16 @@
 package dev.wyedusk.dusksthings.client.rendering.gui.widget;
 
 import dev.wyedusk.dusksthings.common.DusksThings;
+import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutsUtil;
+import dev.wyedusk.dusksthings.common.network.packet.C2SChangeLoadoutPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 public class LoadoutButton extends AbstractWidget {
@@ -27,10 +31,11 @@ public class LoadoutButton extends AbstractWidget {
     @Override
     protected void renderWidget(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         ResourceLocation currentTexture;
+        Player player = Minecraft.getInstance().player;
 
         if (!this.active) {
             currentTexture = disabledTexture;
-        } else if (this.isHoveredOrFocused()) {
+        } else if (this.isHovered() || (player != null && LoadoutsUtil.getCurrentLoadout(player) == this.loadoutNumber)) {
             currentTexture = highlightTexture;
         } else {
             currentTexture = texture;
@@ -42,7 +47,7 @@ public class LoadoutButton extends AbstractWidget {
     @Override
     public void onClick(double mouseX, double mouseY) {
         if (this.active) {
-            Minecraft.getInstance().player.sendSystemMessage(Component.literal("loadout %s".formatted(this.loadoutNumber)));
+            PacketDistributor.sendToServer(new C2SChangeLoadoutPacket(this.loadoutNumber));
         }
     }
 

@@ -8,16 +8,16 @@ import net.minecraft.world.item.ItemStack;
 
 public record LoadoutEntry(ItemStack headStack, ItemStack chestStack, ItemStack legsStack, ItemStack feetStack) {
     public static final Codec<LoadoutEntry> CODEC = RecordCodecBuilder.create(inst -> inst.group(
-            ItemStack.CODEC.fieldOf("headStack").forGetter(LoadoutEntry::headStack),
-            ItemStack.CODEC.fieldOf("chestStack").forGetter(LoadoutEntry::chestStack),
-            ItemStack.CODEC.fieldOf("legsStack").forGetter(LoadoutEntry::legsStack),
-            ItemStack.CODEC.fieldOf("feetStack").forGetter(LoadoutEntry::feetStack)
+            ItemStack.OPTIONAL_CODEC.fieldOf("headStack").forGetter(LoadoutEntry::headStack),
+            ItemStack.OPTIONAL_CODEC.fieldOf("chestStack").forGetter(LoadoutEntry::chestStack),
+            ItemStack.OPTIONAL_CODEC.fieldOf("legsStack").forGetter(LoadoutEntry::legsStack),
+            ItemStack.OPTIONAL_CODEC.fieldOf("feetStack").forGetter(LoadoutEntry::feetStack)
     ).apply(inst, LoadoutEntry::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, LoadoutEntry> STREAM_CODEC = StreamCodec.composite(
-            ItemStack.STREAM_CODEC, LoadoutEntry::headStack,
-            ItemStack.STREAM_CODEC, LoadoutEntry::chestStack,
-            ItemStack.STREAM_CODEC, LoadoutEntry::legsStack,
-            ItemStack.STREAM_CODEC, LoadoutEntry::feetStack,
+            ItemStack.OPTIONAL_STREAM_CODEC, LoadoutEntry::headStack,
+            ItemStack.OPTIONAL_STREAM_CODEC, LoadoutEntry::chestStack,
+            ItemStack.OPTIONAL_STREAM_CODEC, LoadoutEntry::legsStack,
+            ItemStack.OPTIONAL_STREAM_CODEC, LoadoutEntry::feetStack,
             LoadoutEntry::new
     );
 }

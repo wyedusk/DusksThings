@@ -36,5 +36,4 @@ public record S2CSyncGhostPacket(int entityId, GhostDataAttachmentType ghostData
             }
         }
     }
-
 }

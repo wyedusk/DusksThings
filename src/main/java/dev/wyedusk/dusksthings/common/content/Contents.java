@@ -4,6 +4,7 @@ import dev.wyedusk.dusksthings.common.DusksThings;
 import dev.wyedusk.dusksthings.common.content.mechanic.ghosts.GhostDataAttachmentType;
 import dev.wyedusk.dusksthings.common.content.item.SpectralAppleItem;
 import dev.wyedusk.dusksthings.common.content.item.SpectralLensItem;
+import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutEntry;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutsAttachmentType;
 import dev.wyedusk.dusksthings.common.content.mob_effect.SpectralTransformationMobEffect;
 import net.minecraft.core.registries.Registries;
@@ -12,6 +13,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -38,7 +40,11 @@ public class Contents {
                         .copyHandler((original, holder, provider) -> new GhostDataAttachmentType(original.isPermanentGhost(), false))
                         .build());
         public static final Supplier<AttachmentType<LoadoutsAttachmentType>> LOADOUTS = ATTACHMENT_TYPES.register("loadouts", () ->
-                AttachmentType.builder(() -> new LoadoutsAttachmentType(1, List.of()))
+                AttachmentType.builder(() -> new LoadoutsAttachmentType(1, List.of(
+                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY),
+                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY),
+                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY)
+                        )))
                         .serialize(LoadoutsAttachmentType.CODEC)
                         .copyOnDeath()
                         .build());
