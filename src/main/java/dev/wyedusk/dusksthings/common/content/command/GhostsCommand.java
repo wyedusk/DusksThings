@@ -1,20 +1,41 @@
 package dev.wyedusk.dusksthings.common.content.command;
 
 import com.mojang.brigadier.Command;
+import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.wyedusk.dusksthings.common.config.ServerConfig;
+import dev.wyedusk.dusksthings.common.content.Contents;
+import dev.wyedusk.dusksthings.common.content.attachment_type.GhostDataAttachmentType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class GhostsCommand {
     public static LiteralArgumentBuilder<CommandSourceStack> buildCommand() {
-        // TODO: get & set ghost statuses via commands
-        return Commands.literal("ghosts")
-                .executes(GhostsCommand::giveFeatureEnabled);
+        LiteralArgumentBuilder<CommandSourceStack> command = Commands.literal("ghosts");
+        command.then(Commands.literal("get")
+                .then(Commands.argument("entity", EntityArgument.entity())
+                        .executes(GhostsCommand::getGhostStatusOnEntity))
+                .executes(GhostsCommand::getGhostStatusOnSelf));
+
+        command.then(Commands.literal("set")
+                .then(Commands.argument("ghost", BoolArgumentType.bool())
+                        .then(Commands.argument("permanent", BoolArgumentType.bool())
+                                .then(Commands.argument("entity", EntityArgument.entity())
+                                        .executes(GhostsCommand::setGhostStatusOnEntity))
+                                .executes(GhostsCommand::setGhostStatusOnSelf))
+                        .executes(DTCommand::unfinishedCommandError))
+                .executes(DTCommand::unfinishedCommandError));
+
+        command.executes(GhostsCommand::giveFeatureEnabled);
+        return command;
     }
 
     private static int giveFeatureEnabled(CommandContext<CommandSourceStack> context) {
@@ -51,6 +72,61 @@ public class GhostsCommand {
         }
 
         source.sendSystemMessage(message);
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private static int getGhostStatusOnSelf(CommandContext<CommandSourceStack> context) {
+        Entity entity = context.getSource().getEntity();
+        return getGhostStatus(context, entity, true);
+    }
+    private static int getGhostStatusOnEntity(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        Entity entity = EntityArgument.getEntity(context, "entity");
+        return getGhostStatus(context, entity, false);
+    }
+
+    private static int getGhostStatus(CommandContext<CommandSourceStack> context, Entity entity, boolean isSelf) {
+        CommandSourceStack source = context.getSource();
+
+        if (entity instanceof LivingEntity) {
+            GhostDataAttachmentType data = entity.getData(Contents.AttachmentTypes.GHOST_DATA.get());
+            boolean isTempGhost = data.isTemporaryGhost();
+            boolean isPermGhost = data.isPermanentGhost();
+            Component name = isSelf ? Component.literal("You") : entity.getName();
+            source.sendSuccess(() -> name.copy().append(Component.literal(" %s %s temporary ghost and ".formatted(isSelf ? "are" : "is", isTempGhost ? "a" : "not a")).append(Component.literal("%s %s permanent ghost".formatted(isSelf ? "are" : "is", isPermGhost ? "a" : "not a"))).withStyle(ChatFormatting.RESET)), false);
+        } else {
+            source.sendFailure(Component.literal("Provided entity isn't capable of being a ghost!"));
+        }
+
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private static int setGhostStatusOnSelf(CommandContext<CommandSourceStack> context) {
+        Entity entity = context.getSource().getEntity();
+        boolean isGhost = BoolArgumentType.getBool(context, "ghost");
+        boolean isPermanent = BoolArgumentType.getBool(context, "permanent");
+        return setGhostStatus(context, entity, isGhost, isPermanent, true);
+    }
+    private static int setGhostStatusOnEntity(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        Entity entity = EntityArgument.getEntity(context, "entity");
+        boolean isGhost = BoolArgumentType.getBool(context, "ghost");
+        boolean isPermanent = BoolArgumentType.getBool(context, "permanent");
+        return setGhostStatus(context, entity, isGhost, isPermanent, false);
+    }
+
+    private static int setGhostStatus(CommandContext<CommandSourceStack> context, Entity entity, boolean isGhost, boolean isPermanent, boolean isSelf) {
+        CommandSourceStack source = context.getSource();
+
+        if (entity instanceof LivingEntity) {
+            Component name = isSelf ? Component.literal("You") : entity.getName();
+            GhostDataAttachmentType data = entity.getData(Contents.AttachmentTypes.GHOST_DATA.get());
+            boolean isTempGhost = !isPermanent ? isGhost : data.isTemporaryGhost();
+            boolean isPermGhost = isPermanent ? isGhost : data.isPermanentGhost();
+            entity.setData(Contents.AttachmentTypes.GHOST_DATA.get(), new GhostDataAttachmentType(isPermGhost, isTempGhost));
+            source.sendSuccess(() -> name.copy().append(Component.literal(" %s %s %s %s ghost.".formatted(isSelf ? "are" : "is", isGhost ? "now" : "no longer", isPermanent ? "permanently" : "temporarily", isGhost ? "a" : "not a")).withStyle(ChatFormatting.RESET)), true);
+        } else {
+            source.sendFailure(Component.literal("Provided entity isn't capable of being a ghost!"));
+        }
+
         return Command.SINGLE_SUCCESS;
     }
 }

@@ -33,6 +33,7 @@ public class Contents {
                 AttachmentType.builder(() -> new GhostDataAttachmentType(false, false))
                         .serialize(GhostDataAttachmentType.CODEC)
                         .copyOnDeath()
+                        .copyHandler((original, holder, provider) -> new GhostDataAttachmentType(original.isPermanentGhost(), false))
                         .build());
 
         protected static void register(IEventBus modEventBus) { ATTACHMENT_TYPES.register(modEventBus); }

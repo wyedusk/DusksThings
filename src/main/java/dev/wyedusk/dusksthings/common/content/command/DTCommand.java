@@ -33,9 +33,13 @@ public class DTCommand {
         message.append(Component.literal("%s ".formatted(DusksThings.MODNAME)).withStyle(ChatFormatting.LIGHT_PURPLE));
         message.append(Component.literal("v").withStyle(ChatFormatting.GRAY));
         message.append(Component.literal("%s.%s.%s".formatted(DusksThings.MODVER.getMajorVersion(),DusksThings.MODVER.getMinorVersion(),DusksThings.MODVER.getIncrementalVersion())).withStyle(ChatFormatting.LIGHT_PURPLE));
-        //message.append(Component.literal("\n").withStyle(ChatFormatting.RESET));
         source.sendSystemMessage(message);
+        return Command.SINGLE_SUCCESS;
+    }
 
+    public static int unfinishedCommandError(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        source.sendFailure(Component.literal("Unfinished command!"));
         return Command.SINGLE_SUCCESS;
     }
 }
