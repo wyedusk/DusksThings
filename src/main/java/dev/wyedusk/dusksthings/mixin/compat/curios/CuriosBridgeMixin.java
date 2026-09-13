@@ -1,4 +1,4 @@
-package dev.wyedusk.dusksthings.mixin.compat;
+package dev.wyedusk.dusksthings.mixin.compat.curios;
 
 import dev.wyedusk.dusksthings.common.compat.curios.CuriosBridge;
 import net.minecraft.world.entity.LivingEntity;

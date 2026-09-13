@@ -6,6 +6,7 @@ import dev.wyedusk.dusksthings.common.content.item.SpectralAppleItem;
 import dev.wyedusk.dusksthings.common.content.item.SpectralLensItem;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutEntry;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutsAttachmentType;
+import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.compat.LoadoutCuriosEntry;
 import dev.wyedusk.dusksthings.common.content.mob_effect.SpectralTransformationMobEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -41,9 +42,9 @@ public class Contents {
                         .build());
         public static final Supplier<AttachmentType<LoadoutsAttachmentType>> LOADOUTS = ATTACHMENT_TYPES.register("loadouts", () ->
                 AttachmentType.builder(() -> new LoadoutsAttachmentType(1, List.of(
-                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY),
-                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY),
-                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY)
+                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,List.of(LoadoutCuriosEntry.EMPTY)),
+                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,List.of(LoadoutCuriosEntry.EMPTY)),
+                                new LoadoutEntry(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,List.of(LoadoutCuriosEntry.EMPTY))
                         )))
                         .serialize(LoadoutsAttachmentType.CODEC)
                         .copyOnDeath()

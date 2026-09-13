@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "dev.wyedusk.dusksthings.common.compat.MixinCompatChecker",
   "mixins": [
-    "compat.CuriosBridgeMixin"
+    "compat.curios.CuriosBridgeMixin",
+    "compat.curios.CuriosLoadoutsUtilMixin"
   ],
   "client": [
     "client.EntityRenderDispatcherMixin",

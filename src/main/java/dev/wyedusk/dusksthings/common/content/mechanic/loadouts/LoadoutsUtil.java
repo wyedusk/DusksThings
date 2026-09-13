@@ -1,6 +1,7 @@
 package dev.wyedusk.dusksthings.common.content.mechanic.loadouts;
 
 import dev.wyedusk.dusksthings.common.content.Contents;
+import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.compat.LoadoutCuriosEntry;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 
@@ -30,11 +31,13 @@ public class LoadoutsUtil {
 
     public static void saveEquipmentToLoadout(Player player, int loadoutNumber) {
         LoadoutsAttachmentType data = player.getData(Contents.AttachmentTypes.LOADOUTS.get());
+        List<LoadoutCuriosEntry> curiosEntries = List.of(LoadoutCuriosEntry.EMPTY);
         LoadoutEntry newEntry = new LoadoutEntry(
                 player.getInventory().getArmor(3),
                 player.getInventory().getArmor(2),
                 player.getInventory().getArmor(1),
-                player.getInventory().getArmor(0)
+                player.getInventory().getArmor(0),
+                curiosEntries
         );
         ArrayList<LoadoutEntry> loadouts = new ArrayList<>(data.loadouts());
         loadouts.set(loadoutNumber - 1, newEntry);
