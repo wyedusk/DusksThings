@@ -1,4 +1,4 @@
-package dev.wyedusk.dusksthings.common.content.attachment_type;
+package dev.wyedusk.dusksthings.common.content.mechanic.ghosts;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

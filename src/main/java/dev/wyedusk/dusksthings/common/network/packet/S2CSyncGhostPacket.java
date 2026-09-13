@@ -2,7 +2,7 @@ package dev.wyedusk.dusksthings.common.network.packet;
 
 import dev.wyedusk.dusksthings.common.DusksThings;
 import dev.wyedusk.dusksthings.common.content.Contents;
-import dev.wyedusk.dusksthings.common.content.attachment_type.GhostDataAttachmentType;
+import dev.wyedusk.dusksthings.common.content.mechanic.ghosts.GhostDataAttachmentType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;

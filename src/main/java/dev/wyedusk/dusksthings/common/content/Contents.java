@@ -1,7 +1,7 @@
 package dev.wyedusk.dusksthings.common.content;
 
 import dev.wyedusk.dusksthings.common.DusksThings;
-import dev.wyedusk.dusksthings.common.content.attachment_type.GhostDataAttachmentType;
+import dev.wyedusk.dusksthings.common.content.mechanic.ghosts.GhostDataAttachmentType;
 import dev.wyedusk.dusksthings.common.content.item.SpectralAppleItem;
 import dev.wyedusk.dusksthings.common.content.item.SpectralLensItem;
 import dev.wyedusk.dusksthings.common.content.mob_effect.SpectralTransformationMobEffect;

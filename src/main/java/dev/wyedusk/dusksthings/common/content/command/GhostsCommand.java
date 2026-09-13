@@ -7,7 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.wyedusk.dusksthings.common.config.ServerConfig;
 import dev.wyedusk.dusksthings.common.content.Contents;
-import dev.wyedusk.dusksthings.common.content.attachment_type.GhostDataAttachmentType;
+import dev.wyedusk.dusksthings.common.content.mechanic.ghosts.GhostDataAttachmentType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

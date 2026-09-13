@@ -3,7 +3,7 @@ package dev.wyedusk.dusksthings.common.event;
 import dev.wyedusk.dusksthings.common.DusksThings;
 import dev.wyedusk.dusksthings.common.config.ServerConfig;
 import dev.wyedusk.dusksthings.common.content.Contents;
-import dev.wyedusk.dusksthings.common.content.attachment_type.GhostDataAttachmentType;
+import dev.wyedusk.dusksthings.common.content.mechanic.ghosts.GhostDataAttachmentType;
 import dev.wyedusk.dusksthings.common.network.packet.S2CSyncGhostPacket;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;

@@ -3,7 +3,6 @@ package dev.wyedusk.dusksthings.common.content.mechanic.ghosts;
 import dev.wyedusk.dusksthings.common.compat.curios.CuriosBridge;
 import dev.wyedusk.dusksthings.common.config.ServerConfig;
 import dev.wyedusk.dusksthings.common.content.Contents;
-import dev.wyedusk.dusksthings.common.content.attachment_type.GhostDataAttachmentType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.fml.ModList;
