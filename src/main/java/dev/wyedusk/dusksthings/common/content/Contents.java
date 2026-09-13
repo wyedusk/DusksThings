@@ -4,6 +4,7 @@ import dev.wyedusk.dusksthings.common.DusksThings;
 import dev.wyedusk.dusksthings.common.content.mechanic.ghosts.GhostDataAttachmentType;
 import dev.wyedusk.dusksthings.common.content.item.SpectralAppleItem;
 import dev.wyedusk.dusksthings.common.content.item.SpectralLensItem;
+import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutsAttachmentType;
 import dev.wyedusk.dusksthings.common.content.mob_effect.SpectralTransformationMobEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -18,6 +19,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class Contents {
@@ -34,6 +36,11 @@ public class Contents {
                         .serialize(GhostDataAttachmentType.CODEC)
                         .copyOnDeath()
                         .copyHandler((original, holder, provider) -> new GhostDataAttachmentType(original.isPermanentGhost(), false))
+                        .build());
+        public static final Supplier<AttachmentType<LoadoutsAttachmentType>> LOADOUTS = ATTACHMENT_TYPES.register("loadouts", () ->
+                AttachmentType.builder(() -> new LoadoutsAttachmentType(1, List.of()))
+                        .serialize(LoadoutsAttachmentType.CODEC)
+                        .copyOnDeath()
                         .build());
 
         protected static void register(IEventBus modEventBus) { ATTACHMENT_TYPES.register(modEventBus); }
