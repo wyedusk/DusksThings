@@ -2,7 +2,6 @@ package dev.wyedusk.dusksthings.common.content.mechanic.loadouts;
 
 import dev.wyedusk.dusksthings.common.content.Contents;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;

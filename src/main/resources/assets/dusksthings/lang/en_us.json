@@ -20,5 +20,11 @@
   "dusksthings.configuration.spectralLensEnabled": "Spectral Lens Enabled",
   "dusksthings.configuration.ghostTransparency": "Ghost Transparency",
   "dusksthings.configuration.spectralAppleWaitTime": "Spectral Apple Wait Time",
-  "dusksthings.configuration.spectralLensShowsInvisibleEntities": "Spectral Lens Shows Invisible Entities"
+  "dusksthings.configuration.spectralLensShowsInvisibleEntities": "Spectral Lens Shows Invisible Entities",
+
+  "key.categories.dusksthings": "Dusk's Things",
+
+  "key.dusksthings.loadout_one": "Equipment Loadout 1",
+  "key.dusksthings.loadout_two": "Equipment Loadout 2",
+  "key.dusksthings.loadout_three": "Equipment Loadout 3"
 }
