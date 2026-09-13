@@ -1,5 +1,6 @@
 package dev.wyedusk.dusksthings.mixin.compat.curios;
 
+import dev.wyedusk.dusksthings.common.config.ServerConfig;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutEntry;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutsUtil;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.compat.LoadoutCuriosEntry;
@@ -30,6 +31,7 @@ public class CuriosLoadoutsUtilMixin {
 
     @ModifyVariable(method = "saveEquipmentToLoadout", at = @At("STORE"), name = "curiosEntries")
     private static List<LoadoutCuriosEntry> dusksthings$saveEquipmentToLoadout$modifyCuriosEntries(List<LoadoutCuriosEntry> original) {
+        if (!ServerConfig.LOADOUTS_AFFECTS_CURIOS.getAsBoolean()) return original;
         Player player = CURRENT_PLAYER.get();
         Optional<ICuriosItemHandler> optCuriosInventory = CuriosApi.getCuriosInventory(player);
         if (optCuriosInventory.isPresent()) {
@@ -49,6 +51,7 @@ public class CuriosLoadoutsUtilMixin {
 
     @Inject(method = "equipLoadout", at = @At("TAIL"))
     private static void dusksthings$equipLoadout(Player player, int loadoutNumber, CallbackInfo ci) {
+        if (!ServerConfig.LOADOUTS_AFFECTS_CURIOS.getAsBoolean()) return;
         LoadoutEntry loadout = LoadoutsUtil.getLoadout(player, loadoutNumber);
         List<LoadoutCuriosEntry> curiosEntries = loadout.curiosEntries();
         Optional<ICuriosItemHandler> optCuriosInventory = CuriosApi.getCuriosInventory(player);

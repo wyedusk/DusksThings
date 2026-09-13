@@ -2,6 +2,7 @@ package dev.wyedusk.dusksthings.client.event;
 
 import dev.wyedusk.dusksthings.client.content.ClientContents;
 import dev.wyedusk.dusksthings.common.DusksThings;
+import dev.wyedusk.dusksthings.common.config.ServerConfig;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutsUtil;
 import dev.wyedusk.dusksthings.common.network.packet.C2SChangeLoadoutPacket;
 import net.minecraft.client.Minecraft;
@@ -27,18 +28,20 @@ public class ClientGameBusSubscriber {
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
 
-        int currentLoadout = LoadoutsUtil.getCurrentLoadout(player);
-        while (ClientContents.KeyMappings.LOADOUT_ONE_KEY.consumeClick()) {
-            if (currentLoadout != 1)
-                PacketDistributor.sendToServer(new C2SChangeLoadoutPacket(1));
-        }
-        while (ClientContents.KeyMappings.LOADOUT_TWO_KEY.consumeClick()) {
-            if (currentLoadout != 2)
-                PacketDistributor.sendToServer(new C2SChangeLoadoutPacket(2));
-        }
-        while (ClientContents.KeyMappings.LOADOUT_THREE_KEY.consumeClick()) {
-            if (currentLoadout != 3)
-                PacketDistributor.sendToServer(new C2SChangeLoadoutPacket(3));
+        if (ServerConfig.LOADOUTS_FEATURE_ENABLED.getAsBoolean()) {
+            int currentLoadout = LoadoutsUtil.getCurrentLoadout(player);
+            while (ClientContents.KeyMappings.LOADOUT_ONE_KEY.consumeClick()) {
+                if (currentLoadout != 1 && ServerConfig.MAX_LOADOUTS.getAsInt() >= 1)
+                    PacketDistributor.sendToServer(new C2SChangeLoadoutPacket(1));
+            }
+            while (ClientContents.KeyMappings.LOADOUT_TWO_KEY.consumeClick()) {
+                if (currentLoadout != 2 && ServerConfig.MAX_LOADOUTS.getAsInt() >= 2)
+                    PacketDistributor.sendToServer(new C2SChangeLoadoutPacket(2));
+            }
+            while (ClientContents.KeyMappings.LOADOUT_THREE_KEY.consumeClick()) {
+                if (currentLoadout != 3 && ServerConfig.MAX_LOADOUTS.getAsInt() >= 3)
+                    PacketDistributor.sendToServer(new C2SChangeLoadoutPacket(3));
+            }
         }
     }
 }

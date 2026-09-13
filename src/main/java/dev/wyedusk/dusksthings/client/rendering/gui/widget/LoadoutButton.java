@@ -1,6 +1,7 @@
 package dev.wyedusk.dusksthings.client.rendering.gui.widget;
 
 import dev.wyedusk.dusksthings.common.DusksThings;
+import dev.wyedusk.dusksthings.common.config.ServerConfig;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutsUtil;
 import dev.wyedusk.dusksthings.common.network.packet.C2SChangeLoadoutPacket;
 import net.minecraft.client.Minecraft;
@@ -26,6 +27,10 @@ public class LoadoutButton extends AbstractWidget {
         this.highlightTexture = ResourceLocation.fromNamespaceAndPath(DusksThings.MODID, "textures/gui/sprites/widget/loadout_%s_highlighted.png".formatted(loadoutNumberText));
         this.disabledTexture = ResourceLocation.fromNamespaceAndPath(DusksThings.MODID, "textures/gui/sprites/widget/loadout_%s_disabled.png".formatted(loadoutNumberText));
         this.loadoutNumber = loadoutNumber;
+
+        if (ServerConfig.MAX_LOADOUTS.getAsInt() < loadoutNumber || !ServerConfig.LOADOUTS_FEATURE_ENABLED.getAsBoolean()) {
+            this.active = false;
+        }
     }
 
     @Override

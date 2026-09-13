@@ -21,6 +21,10 @@
   "dusksthings.configuration.ghostTransparency": "Ghost Transparency",
   "dusksthings.configuration.spectralAppleWaitTime": "Spectral Apple Wait Time",
   "dusksthings.configuration.spectralLensShowsInvisibleEntities": "Spectral Lens Shows Invisible Entities",
+  "dusksthings.configuration.loadouts": "Loadouts",
+  "dusksthings.configuration.loadoutsFeatureEnabled": "Loadouts Feature Enabled",
+  "dusksthings.configuration.loadoutsAffectsCurios": "Loadouts Affects Curios",
+  "dusksthings.configuration.maxLoadouts": "Max Loadouts",
 
   "key.categories.dusksthings": "Dusk's Things",
 
