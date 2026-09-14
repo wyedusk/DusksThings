@@ -33,3 +33,4 @@ jobs:
         with:
           name: Dev Build Artifact (${{ github.sha }})
           path: build/libs/dusksthings-${{ github.sha }}.jar
+          archive: false
