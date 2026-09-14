@@ -3,7 +3,6 @@ package dev.wyedusk.dusksthings.common.network.packet;
 import dev.wyedusk.dusksthings.common.DusksThings;
 import dev.wyedusk.dusksthings.common.config.ServerConfig;
 import dev.wyedusk.dusksthings.common.content.mechanic.loadouts.LoadoutsUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -30,13 +29,13 @@ public record C2SChangeLoadoutPacket(int loadoutNumber) implements CustomPacketP
 
     public static void handle(C2SChangeLoadoutPacket packet, IPayloadContext context) {
         if (!context.flow().isServerbound()) return;
+        if (!ServerConfig.SPEC.isLoaded()) return;
         if (!ServerConfig.LOADOUTS_FEATURE_ENABLED.getAsBoolean()) return;
-        if (Minecraft.getInstance().level != null) {
-            Player player = context.player();
-            int currentLoadout = LoadoutsUtil.getCurrentLoadout(player);
-            if (currentLoadout == packet.loadoutNumber) return;
-            LoadoutsUtil.equipLoadout(player, packet.loadoutNumber);
-            PacketDistributor.sendToPlayer((ServerPlayer) player, new S2CSyncLoadoutsPacket(LoadoutsUtil.getCurrentLoadout(player), LoadoutsUtil.getLoadouts(player)));
-        }
+
+        Player player = context.player();
+        int currentLoadout = LoadoutsUtil.getCurrentLoadout(player);
+        if (currentLoadout == packet.loadoutNumber) return;
+        LoadoutsUtil.equipLoadout(player, packet.loadoutNumber);
+        PacketDistributor.sendToPlayer((ServerPlayer) player, new S2CSyncLoadoutsPacket(LoadoutsUtil.getCurrentLoadout(player), LoadoutsUtil.getLoadouts(player)));
     }
 }

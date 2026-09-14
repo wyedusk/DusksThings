@@ -8,6 +8,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.wyedusk.dusksthings.common.config.ServerConfig;
 import dev.wyedusk.dusksthings.common.content.Contents;
 import dev.wyedusk.dusksthings.common.content.mechanic.ghosts.GhostDataAttachmentType;
+import dev.wyedusk.dusksthings.common.network.packet.S2CSyncGhostPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -16,6 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class GhostsCommand {
     public static LiteralArgumentBuilder<CommandSourceStack> buildCommand() {
@@ -127,7 +129,19 @@ public class GhostsCommand {
         } else {
             source.sendFailure(Component.literal("Provided entity isn't capable of being a ghost!"));
         }
+        resyncGhostData(entity);
 
         return Command.SINGLE_SUCCESS;
+    }
+
+    private static void resyncGhostData(Entity entity) {
+        GhostDataAttachmentType data = new GhostDataAttachmentType(
+                entity.getData(Contents.AttachmentTypes.GHOST_DATA.get()).isPermanentGhost(),
+                true
+        );
+        PacketDistributor.sendToPlayersTrackingEntity(
+                entity,
+                new S2CSyncGhostPacket(entity.getId(), data)
+        );
     }
 }
