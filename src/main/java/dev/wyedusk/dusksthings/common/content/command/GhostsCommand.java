@@ -26,6 +26,7 @@ public class GhostsCommand {
                 .executes(GhostsCommand::getGhostStatusOnSelf));
 
         command.then(Commands.literal("set")
+                .requires(predicate -> predicate.hasPermission(2))
                 .then(Commands.argument("ghost", BoolArgumentType.bool())
                         .then(Commands.argument("permanent", BoolArgumentType.bool())
                                 .then(Commands.argument("entity", EntityArgument.entity())

@@ -20,14 +20,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.CompletableFuture;
 
 public class DTRecipeProvider extends RecipeProvider {
-    public DTRecipeProvider(
-            PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+    public DTRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider);
     }
 
     @Override
-    protected void buildRecipes(
-            @NotNull RecipeOutput output, HolderLookup.@NotNull Provider lookup) {
+    protected void buildRecipes(@NotNull RecipeOutput output, HolderLookup.@NotNull Provider lookup) {
         HolderLookup.RegistryLookup<Biome> biomeLookup = lookup.lookupOrThrow(Registries.BIOME);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Contents.Items.SPECTRAL_LENS)
                 .pattern("DGD")
