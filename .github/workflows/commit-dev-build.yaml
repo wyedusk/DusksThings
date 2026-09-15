@@ -21,7 +21,7 @@ jobs:
         with:
           cache-disabled: true
 
-      - name: Allow Executing gradlew
+      - name: Allow Executing Gradle Wrapper
         run: chmod +x gradlew
 
       - name: Build Artifact
